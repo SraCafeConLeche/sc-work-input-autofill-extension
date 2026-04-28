@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Work Input Autofill</title>
+    <link rel="stylesheet" href="popup.css">
+    <script src="storage.js" defer></script>
+    <script src="popup.js" defer></script>
+  </head>
+  <body>
+    <main class="popup-shell">
+      <header class="popup-header">
+        <div>
+          <p class="eyebrow">Work Input Autofill</p>
+          <h1>Sitio actual</h1>
+        </div>
+        <span id="statusBadge" class="status-badge">Listo</span>
+      </header>
+
+      <section class="site-section">
+        <p id="siteKey" class="site-key">Cargando...</p>
+        <p class="security-note">
+          No guardes contrasenas, tokens, codigos 2FA, datos bancarios ni tarjetas.
+        </p>
+      </section>
+
+      <section class="section-block safety-section">
+        <div class="section-title">
+          <h2>Modo de seguridad</h2>
+          <span id="safetyModeText" class="count-pill">Seguro</span>
+        </div>
+        <label class="inline-control">
+          <input id="allowUnsafeFields" type="checkbox">
+          Permitir campos bloqueados
+        </label>
+        <p id="unsafeModeWarning" class="unsafe-warning" hidden>
+          Advertencia: este modo permite guardar campos sensibles como password, token, PIN, banco o tarjetas. Usa esto solo si entiendes el riesgo.
+        </p>
+      </section>
+
+      <section class="action-bar" aria-label="Acciones rapidas">
+        <button id="fillNowButton" type="button">Rellenar ahora</button>
+        <button id="scanInputsButton" type="button" class="secondary">Escanear inputs</button>
+        <button id="saveChangesButton" type="button" class="secondary">Guardar cambios</button>
+      </section>
+
+      <p id="message" class="message" role="status"></p>
+
+      <section class="section-block">
+        <div class="section-title">
+          <h2>Campos autoguardados</h2>
+          <span id="autoCount" class="count-pill">0</span>
+        </div>
+        <div id="autoFieldsList" class="item-list"></div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-title">
+          <h2>Reglas manuales</h2>
+          <span id="manualCount" class="count-pill">0</span>
+        </div>
+        <div id="manualRulesList" class="item-list"></div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-title">
+          <h2>Anadir regla manual</h2>
+        </div>
+        <form id="manualRuleForm" class="rule-form">
+          <label>
+            Label
+            <input id="manualLabel" type="text" name="label" minlength="2" required>
+          </label>
+          <label>
+            CSS selector
+            <input id="manualSelector" type="text" name="selector" required>
+          </label>
+          <label>
+            Value
+            <textarea id="manualValue" name="value" rows="2"></textarea>
+          </label>
+          <label class="inline-control">
+            <input id="manualEnabled" type="checkbox" name="enabled" checked>
+            Enabled
+          </label>
+          <button type="submit">Guardar regla</button>
+        </form>
+      </section>
+
+      <section class="section-block">
+        <div class="section-title">
+          <h2>Inputs detectados</h2>
+          <span id="scanCount" class="count-pill">0</span>
+        </div>
+        <div id="scanResultsList" class="item-list"></div>
+      </section>
+    </main>
+  </body>
+</html>
